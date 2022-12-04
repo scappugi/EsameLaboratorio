@@ -23,6 +23,8 @@ public:
     virtual void removeToList(Nota *nota);
     virtual void removeAndDestroyNote(Nota *nota);
     string getNomeLista();
+    void setNomeLista(string name);
+
     //fine
 
     //metodi per pattern observer

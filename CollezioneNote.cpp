@@ -39,9 +39,13 @@ void CollezioneNote::unsubscribe(Observer *o) {
 
 void CollezioneNote::notify() {
 
-    observer->update(listaToDo.getNomeLista(),listaToDo.size()); //passo al notify i numeri inerenti al numero di cose attuali in quella lista
+    observer->update(getNomeLista(),listaToDo.size()); //passo al notify i numeri inerenti al numero di cose attuali in quella lista
 }
 
-void CollezioneNote::getNomeLista() {
+string CollezioneNote::getNomeLista() {
+    return nomeLista;
+}
 
+void CollezioneNote::setNomeLista(string name) {
+    nomeLista=name;
 }

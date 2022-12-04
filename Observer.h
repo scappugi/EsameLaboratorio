@@ -4,12 +4,13 @@
 
 #ifndef ESAMELABORATORIO_OBSERVER_H
 #define ESAMELABORATORIO_OBSERVER_H
-
+#include "string"
+using namespace std;
 
 class Observer {
 public:
     virtual ~Observer(); //distruttore virtuale
-    virtual void update(int size) = 0; //inserisco dimensione attuale della lista come parametro di update
+    virtual void update(string name ,int size) = 0; //inserisco dimensione attuale della lista come parametro di update
     virtual void attach() = 0;
     virtual void detach() = 0;
 
