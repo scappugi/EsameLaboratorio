@@ -49,3 +49,12 @@ string CollezioneNote::getNomeLista() {
 void CollezioneNote::setNomeLista(string name) {
     nomeLista=name;
 }
+
+bool CollezioneNote::bloccaNota(Nota *nota) {
+    for ( auto itr = listaToDo.begin() ; itr != listaToDo.end(); itr++){
+        if (*itr == nota){
+        nota->setBlocco(1);}
+        else cout<<"nella lista " << getNomeLista() <<" non esiste nessuna nota con il nome " << nota->getNomeNota()<< endl;
+    }
+}
+

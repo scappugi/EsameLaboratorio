@@ -24,6 +24,7 @@ public:
     virtual void removeAndDestroyNote(Nota *nota);
     string getNomeLista();
     void setNomeLista(string name);
+    bool bloccaNota(Nota *nota); //ritorna 1 se bloccata con successo altrimenti 0
 
     //fine
 

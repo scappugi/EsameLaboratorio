@@ -19,12 +19,12 @@ void Nota::setDescrizioneNota(const string &descrizioneNota) {
     Nota::descrizioneNota = descrizioneNota;
 }
 
-bool Nota::isBloccoModificaCancellazione() const {
-    return bloccoModificaCancellazione;
+bool Nota::getBlocco() const {
+    return blocco;
 }
 
-void Nota::setBloccoModificaCancellazione(bool bloccoModificaCancellazione) {
-    Nota::bloccoModificaCancellazione = bloccoModificaCancellazione;
+void Nota::setBlocco(bool bloccoModificaCancellazione) {
+    Nota::blocco = blocco;
 }
 
 bool Nota::isPriorita() const {

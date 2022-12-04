@@ -13,7 +13,7 @@ class Nota {
 private:
     string nomeNota;
     string descrizioneNota;
-    bool bloccoModificaCancellazione;
+    bool blocco;
     bool priorita;
     bool inseritoInUnaLista;
     bool inseritoInUnaListaHpriorita;
@@ -26,9 +26,9 @@ public:
 
     void setDescrizioneNota(const string &descrizioneNota);
 
-    bool isBloccoModificaCancellazione() const;
+    bool getBlocco() const; //blocca modifica e cancellazione
 
-    void setBloccoModificaCancellazione(bool bloccoModificaCancellazione);
+    void setBlocco(bool bloccoModificaCancellazione);
 
     bool isPriorita() const;
 
