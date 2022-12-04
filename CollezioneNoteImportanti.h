@@ -6,8 +6,21 @@
 #define ESAMELABORATORIO_COLLEZIONENOTEIMPORTANTI_H
 
 
-class CollezioneNoteImportanti {
+#include "Nota.h"
+#include "list"
+#include "Subject.h"
+#include "CollezioneNote.h"
 
+class CollezioneNoteImportanti:public Subject, public CollezioneNote{
+public:
+    virtual void AddNoteToList(Nota *nota);
+    virtual void removeToList(Nota *nota);
+
+    virtual ~CollezioneNoteImportanti();
+
+private:
+    list<Nota *> listaToDoImportanti;
+    string nomeLista;
 };
 
 
