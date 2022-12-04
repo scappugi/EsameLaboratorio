@@ -14,8 +14,6 @@
 class CollezioneNoteImportanti:public Subject, public CollezioneNote{
 public:
     virtual void AddNoteToList(Nota *nota);
-    virtual void removeToList(Nota *nota);
-
     virtual ~CollezioneNoteImportanti();
 
 private:

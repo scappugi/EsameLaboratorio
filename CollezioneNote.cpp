@@ -51,10 +51,48 @@ void CollezioneNote::setNomeLista(string name) {
 }
 
 bool CollezioneNote::bloccaNota(Nota *nota) {
-    for ( auto itr = listaToDo.begin() ; itr != listaToDo.end(); itr++){
+    for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
+        if (*itr == nota) {
+            nota->setBlocco(true);
+            return true;
+        } else {
+            cout << "nella lista " << getNomeLista() << " non esiste nessuna nota con il nome " << nota->getNomeNota()<< endl;
+            return false; //caso di fallimento
+        }
+    }
+}
+
+bool CollezioneNote::sbloccaNota(Nota *nota) {
+    for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
         if (*itr == nota){
-        nota->setBlocco(1);}
-        else cout<<"nella lista " << getNomeLista() <<" non esiste nessuna nota con il nome " << nota->getNomeNota()<< endl;
+            nota->setBlocco(0);
+            return true;
+        }
+        else {
+            cout << "nella lista " << getNomeLista() << " non esiste nessuna nota con il nome " << nota->getNomeNota()<< endl;
+            return false;
+        }
+    }
+    }
+
+void CollezioneNote::modificaNota(Nota *nota, string const newTitle) {
+    for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
+        if (*itr == nota){ //la nota è in quella lista
+        nota->setNomeNota(newTitle);
+        }
+    }
+}
+
+void CollezioneNote::bloccaTutto() {
+    for (auto it :listaToDo){
+        (*it).setBlocco(true);
+    }
+}
+
+Nota* CollezioneNote::getNota(string const nomeNota) {
+    for (auto it :listaToDo){
+        if(it->getNomeNota()==nomeNota)
+            return it; //ritorno la nota che ha il nome cercato
     }
 }
 

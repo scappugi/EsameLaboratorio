@@ -23,7 +23,7 @@ bool Nota::getBlocco() const {
     return blocco;
 }
 
-void Nota::setBlocco(bool bloccoModificaCancellazione) {
+void Nota::setBlocco(bool blocco) {
     Nota::blocco = blocco;
 }
 

@@ -28,7 +28,7 @@ public:
 
     bool getBlocco() const; //blocca modifica e cancellazione
 
-    void setBlocco(bool bloccoModificaCancellazione);
+    void setBlocco(bool blocco);
 
     bool isPriorita() const;
 
