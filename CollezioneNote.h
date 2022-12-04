@@ -1,0 +1,14 @@
+//
+// Created by simon on 04/12/2022.
+//
+
+#ifndef ESAMELABORATORIO_COLLEZIONENOTE_H
+#define ESAMELABORATORIO_COLLEZIONENOTE_H
+
+
+class CollezioneNote {
+
+};
+
+
+#endif //ESAMELABORATORIO_COLLEZIONENOTE_H
