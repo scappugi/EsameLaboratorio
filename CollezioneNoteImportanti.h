@@ -11,9 +11,9 @@
 #include "Subject.h"
 #include "CollezioneNote.h"
 
-class CollezioneNoteImportanti:public Subject, public CollezioneNote{
+class CollezioneNoteImportanti: public CollezioneNote{
 public:
-    virtual void AddNoteToList(Nota *nota);
+    virtual void AddNoteToList(Nota *nota) override;
     virtual ~CollezioneNoteImportanti();
 
 private:

@@ -29,14 +29,12 @@ public:
     void bloccaTutto();//pone tutte le note su bloccato
     void modificaNota(Nota *nota, string const newTitle);
     Nota* getNota(string const nomeNota); //restituisce la prima nota con quel nome
-
-
     //fine
 
     //metodi per pattern observer
-    void subscribe(Observer *o);
+    void subscribe(Observer *o) override;
     void unsubscribe(Observer *o) override;
-    void notify();
+    void notify() override;
     //fine
 
     virtual ~CollezioneNote();
