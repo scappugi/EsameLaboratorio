@@ -83,7 +83,7 @@ void CollezioneNote::modificaNota(Nota *nota, string const newTitle) {
     }
 }
 
-void CollezioneNote::bloccaTutto() {
+void CollezioneNote::bloccaTutteLeNote() {
     for (auto it :listaToDo){
         (*it).setBlocco(true);
     }
@@ -100,6 +100,14 @@ void CollezioneNote::aumentaPrioritàNota(Nota *nota) {
     for(auto it : listaToDo){
         if(it == nota){
             it->setPriorita(1);//imposta la priorità ad alta
+        }
+    }
+}
+
+void CollezioneNote::diminuisciPrioritàNota(Nota *nota) {
+    for(auto it : listaToDo){
+        if(it == nota){
+            it->setPriorita(0);//imposta la priorità ad alta
         }
     }
 }
