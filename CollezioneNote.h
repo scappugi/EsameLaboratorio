@@ -22,13 +22,14 @@ public:
     virtual void AddNoteToList(Nota *nota); //NON AGGIUNGERE NOTE CON LO STESSO TITOLO, ESSO DEVE ESSERE UNIVOCO
     virtual void removeToList(Nota *nota);
     virtual void removeAndDestroyNote(Nota *nota);
-    string getNomeLista();
     void setNomeLista(string name);
     bool bloccaNota(Nota *nota); //ritorna 1 se bloccata con successo altrimenti 0
     bool sbloccaNota(Nota *nota); //permette di togliere il blocco messo da bloccaNota
     void bloccaTutto();//pone tutte le note su bloccato
-    void modificaNota(Nota *nota, string const newTitle);
+    void aumentaPrioritàNota(Nota *nota);
+    void modificaNota(Nota *nota, string const newTitle); //vuole andare a cambiare il titolo della nota
     Nota* getNota(string const nomeNota); //restituisce la prima nota con quel nome
+    string getNomeLista();
     //fine
 
     //metodi per pattern observer

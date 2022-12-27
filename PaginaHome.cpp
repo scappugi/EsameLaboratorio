@@ -47,4 +47,18 @@ void PaginaHome::aggiungiNotaACollezioneBase(Nota *nota, string nomeCollezione) 
         it->second->AddNoteToList(nota); //accedo all elemento lista di note e inserisco la nota che dovevo inserire.
     }
 }
+
+void PaginaHome::aggiungiNotaACollezioneImportanti(Nota *nota, string NomeCollezione) {
+    auto it = collezioneNoteImportanti.find(NomeCollezione);
+    if ( it != collezioneNoteImportanti.end()){
+        it->second->AddNoteToList(nota);
+    }
+}
+
+void PaginaHome::setAltaPriorità(Nota *nota, string nomeCollezione) {
+    auto it = collezioneNoteImportanti.find(nomeCollezione);
+    if ( it != collezioneNoteImportanti.end()){
+        it->second->aumentaPrioritàNota(nota);//in questo metodo si aumenta automaticamente la priorità di una nota
+    }
+}
 //pensare a se fare un metodo per le liste prioritarie o no

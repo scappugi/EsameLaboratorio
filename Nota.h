@@ -30,7 +30,7 @@ public:
 
     void setBlocco(bool blocco);
 
-    bool isPriorita() const;
+    bool getPriorita() const;
 
     void setPriorita(bool priorita);
 

@@ -27,7 +27,7 @@ void Nota::setBlocco(bool blocco) {
     Nota::blocco = blocco;
 }
 
-bool Nota::isPriorita() const {
+bool Nota::getPriorita() const {
     return priorita;
 }
 

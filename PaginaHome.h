@@ -23,6 +23,7 @@ public:
     bool verificaImportanza(Nota &collezioneNote); //verifica se una nota è settata come importante o no
     void aggiungiNotaACollezioneBase(Nota *nota, string NomeCollezione);
     void aggiungiNotaACollezioneImportanti(Nota *nota, string NomeCollezione);
+    void setAltaPriorità(Nota *nota, string nomeCollezione); //permette di settare una nota con priorità pari a 1(High).
 
     ////metodi inerenti al pattern Observer
 

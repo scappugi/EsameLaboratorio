@@ -96,3 +96,11 @@ Nota* CollezioneNote::getNota(string const nomeNota) {
     }
 }
 
+void CollezioneNote::aumentaPrioritàNota(Nota *nota) {
+    for(auto it : listaToDo){
+        if(it == nota){
+            it->setPriorita(1);//imposta la priorità ad alta
+        }
+    }
+}
+
