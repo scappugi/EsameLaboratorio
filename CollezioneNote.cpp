@@ -46,7 +46,7 @@ string CollezioneNote::getNomeLista() {
     return nomeLista;
 }
 
-void CollezioneNote::setNomeLista(string name) {
+void CollezioneNote::setNomeLista(const string& name) {
     nomeLista=name;
 }
 
@@ -75,7 +75,7 @@ bool CollezioneNote::sbloccaNota(Nota *nota) {
     }
     }
 
-void CollezioneNote::modificaNota(Nota *nota, string const newTitle) {
+void CollezioneNote::modificaNota(Nota *nota, const string& newTitle) {
     for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
         if (*itr == nota){ //la nota è in quella lista
         nota->setNomeNota(newTitle);
@@ -89,7 +89,7 @@ void CollezioneNote::bloccaTutteLeNote() {
     }
 }
 
-Nota* CollezioneNote::getNota(string const nomeNota) {
+Nota* CollezioneNote::getNota(const string& nomeNota) {
     for (auto it :listaToDo){
         if(it->getNomeNota()==nomeNota)
             return it; //ritorno la nota che ha il nome cercato

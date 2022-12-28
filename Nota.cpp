@@ -3,7 +3,7 @@
 //
 
 #include "Nota.h"
-const string &Nota::getNomeNota() const {
+const string Nota::getNomeNota() const {
     return nomeNota;
 }
 

@@ -18,7 +18,7 @@ private:
     bool inseritoInUnaLista;
     bool inseritoInUnaListaHpriorita;
 public:
-    const string &getNomeNota() const;
+    const string getNomeNota() const;
 
     void setNomeNota(const string &nomeNota);
 

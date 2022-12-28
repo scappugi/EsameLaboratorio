@@ -40,7 +40,7 @@ bool PaginaHome::verificaImportanza(Nota &nota) {
     else return true;
 }
 
-void PaginaHome::aggiungiNotaACollezioneBase(Nota *nota, string nomeCollezione) {
+void PaginaHome::aggiungiNotaACollezioneBase(Nota *nota,const string& nomeCollezione) {
     auto it=collezioneNote.find(nomeCollezione);
     if  (it != collezioneNote.end()){
         //se if positivo allora esiste una collezione con il nome cercato quindi si procede ad inserire al suo interno la nota
@@ -48,14 +48,14 @@ void PaginaHome::aggiungiNotaACollezioneBase(Nota *nota, string nomeCollezione) 
     }
 }
 
-void PaginaHome::aggiungiNotaACollezioneImportanti(Nota *nota, string NomeCollezione) {
+void PaginaHome::aggiungiNotaACollezioneImportanti(Nota *nota,const string& NomeCollezione) {
     auto it = collezioneNoteImportanti.find(NomeCollezione);
     if ( it != collezioneNoteImportanti.end()){
         it->second->AddNoteToList(nota);
     }
 }
 
-void PaginaHome::setAltaPriorità(Nota *nota, string nomeCollezione) {
+void PaginaHome::setAltaPriorità(Nota *nota,const string& nomeCollezione) {
     auto it = collezioneNote.find(nomeCollezione);
     if ( it != collezioneNote.end()){
         it->second->aumentaPrioritàNota(nota);//in questo metodo si aumenta automaticamente la priorità di una nota
@@ -66,7 +66,7 @@ void PaginaHome::update(string name, int size) {
 
 }
 
-void PaginaHome::setBassaPriorità(Nota *nota, string nomeCollezione) {
+void PaginaHome::setBassaPriorità(Nota *nota,const string& nomeCollezione) {
     auto it = collezioneNoteImportanti.find(nomeCollezione);
     if ( it != collezioneNoteImportanti.end()){
         it->second->diminuisciPrioritàNota(nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
@@ -77,7 +77,7 @@ void PaginaHome::setBassaPriorità(Nota *nota, string nomeCollezione) {
     }
 }
 
-void PaginaHome::setBloccoNota(Nota *nota, string nomeCollezione) {
+void PaginaHome::setBloccoNota(Nota *nota, const string &nomeCollezione) {
     auto it =collezioneNote.find(nomeCollezione);
     if(it != collezioneNote.end()){
         it->second->bloccaNota(nota);
@@ -88,7 +88,7 @@ void PaginaHome::setBloccoNota(Nota *nota, string nomeCollezione) {
     }
 }
 
-void PaginaHome::setBloccaTutteLeNote(string nomeCollezione) {
+void PaginaHome::setBloccaTutteLeNote(const string &nomeCollezione) {
     auto it =collezioneNote.find(nomeCollezione);
     if(it != collezioneNote.end()){
         it->second->bloccaTutteLeNote();
@@ -99,7 +99,7 @@ void PaginaHome::setBloccaTutteLeNote(string nomeCollezione) {
     }
 }
 
-void PaginaHome::spostaNota(Nota *nota, string collezioneIniziale, string collezionefinale) {
+void PaginaHome::spostaNota(Nota *nota, const string& collezioneIniziale, const string& collezionefinale) {
     auto it =collezioneNote.find(collezioneIniziale);
     if(it != collezioneNote.end()){
         it->second->removeToList(nota);
@@ -117,6 +117,19 @@ void PaginaHome::spostaNota(Nota *nota, string collezioneIniziale, string collez
         itr1->second->AddNoteToList(nota);
     }
 }
+
+void PaginaHome::eliminaNota(const string &nomeCollezione, Nota *nota) {
+    auto it =collezioneNote.find(nomeCollezione);
+    if(it != collezioneNote.end()){
+            it->second->removeAndDestroyNote(nota);
+    }
+    auto itr =collezioneNoteImportanti.find(nomeCollezione);
+    if(itr != collezioneNoteImportanti.end()){
+        itr->second->removeAndDestroyNote(nota);
+    }
+}
+
+
 
 
 //pensare a se fare un metodo per le liste prioritarie o no

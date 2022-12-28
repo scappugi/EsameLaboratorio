@@ -21,15 +21,20 @@ public:
     void creaNuovaCollezione(const string& nomeCollezione);
     void creaNuovaCollezioneNoteImportanti(const string& nomeCollezione);
     bool verificaImportanza(Nota &collezioneNote); //verifica se una nota è settata come importante o no
-    void aggiungiNotaACollezioneBase(Nota *nota, string NomeCollezione);
-    void aggiungiNotaACollezioneImportanti(Nota *nota, string NomeCollezione);
-    void setAltaPriorità(Nota *nota, string nomeCollezione); //permette di settare una nota con priorità pari a 1(High).
-    void setBassaPriorità(Nota *nota, string nomeCollezione);
-    void setBloccoNota(Nota *nota, string nomeCollezione);
-    void setBloccaTutteLeNote(string nomeCollezione); //blocca tutte le note di nomeCollezione
-    void spostaNota(Nota *nota, string collezioneIniziale, string collezionefinale);
-    void eliminaNota(Nota *nota, string nomeCollezione); //gestisce il caso di errore con una eccezione (caso in cui la nota/colezione siano bloccate)
-    void eliminaCollezione(string nomeCollezione);
+    void aggiungiNotaACollezioneBase(Nota *nota, const string& NomeCollezione);
+    void aggiungiNotaACollezioneImportanti(Nota *nota, const string& NomeCollezione);
+    void setAltaPriorità(Nota *nota, const string& nomeCollezione); //permette di settare una nota con priorità pari a 1(High).
+    void setBassaPriorità(Nota *nota, const string& nomeCollezione);
+    void setBloccoNota(Nota *nota, const string &nomeCollezione);
+    void setBloccaTutteLeNote(const string &nomeCollezione); //blocca tutte le note di nomeCollezione
+    void spostaNota(Nota *nota, const string& collezioneIniziale, const string& collezionefinale);
+    void eliminaNota(const string& nomeCollezione, Nota *nota ); //gestisce il caso di errore con una eccezione (caso in cui la nota/colezione siano bloccate)
+    void eliminaCollezione(const string& nomeCollezione);
+
+
+    ///metodi di ricerca nelle collezioni
+    Nota* ricercaCollezioneL(const string& nomeCollezione); //low priority
+    Nota* ricercaCollezioneH(const string& nomeCollezione); //high priority
 
 
     ////metodi inerenti al pattern Observer
