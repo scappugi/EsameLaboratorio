@@ -10,7 +10,7 @@
 using namespace  std;
 
 class Nota {
-public: Nota (string nome, string descrizione=0): nomeNota(nome), descrizioneNota(descrizione){}
+public: Nota (string nome, string descrizione=""): nomeNota(nome), descrizioneNota(descrizione){}
 private:
     string nomeNota;
     string descrizioneNota;

@@ -14,7 +14,7 @@ Nota nota3 ("Analisi I","Esame di analisi I" );
 
 Nota nota4 ("Analisi II", "Esame di analisi II" );
 
-Nota nota5 ("Fisica II", "Esame di Fisica II");
+Nota nota5 ("Fisica II");
 
 PaginaHome paginaHome;
 
