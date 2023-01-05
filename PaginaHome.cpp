@@ -63,7 +63,7 @@ void PaginaHome::setAltaPriorita(Nota *nota,const string& nomeCollezione) {
 }
 
 void PaginaHome::update(string name, int size) { //stampa a schermata il numero di note nella collezione con il nome passato come parametro
-    std::cout<<"la collezione con nome" << name <<"ha in questo momento n: "<<size<<" note"<<endl;
+    std::cout<<"la collezione -- " << name <<" -- ha in questo momento n: "<<size<<" note "<<endl;
 }
 
 void PaginaHome::setBassaPriorita(Nota *nota,const string& nomeCollezione) {
@@ -110,7 +110,7 @@ void PaginaHome::spostaNota(Nota *nota, const string& collezioneIniziale, const 
     }
     auto it1 =collezioneNote.find(collezionefinale);
     if(it1 != collezioneNote.end()){
-        it1->second->AddNoteToList(*nota);
+        it1->second->AddNoteToList(nota);
     }
     auto itr1 =collezioneNoteImportanti.find(collezionefinale);
     if(itr1 != collezioneNoteImportanti.end()){

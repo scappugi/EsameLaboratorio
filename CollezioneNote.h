@@ -19,7 +19,7 @@ public:
         this->nomeLista=nomeLista;}
 
     ///metodi gestione lista
-    virtual void AddNoteToList(Nota &nota); //NON AGGIUNGERE NOTE CON LO STESSO TITOLO, ESSO DEVE ESSERE UNIVOCO
+    virtual void AddNoteToList(Nota *nota); //NON AGGIUNGERE NOTE CON LO STESSO TITOLO, ESSO DEVE ESSERE UNIVOCO
     virtual void removeToList(Nota *nota);
     virtual void removeAndDestroyNote(Nota *nota);
     void setNomeLista(const string& name);
