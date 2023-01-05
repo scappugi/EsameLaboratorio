@@ -9,7 +9,7 @@ using namespace std;
 
 class Observer {
 public:
-    virtual ~Observer(); //distruttore virtuale
+    virtual ~Observer()=default; //distruttore virtuale
     virtual void update(string name ,int size) = 0; //inserisco dimensione attuale della lista come parametro di update
 };
 

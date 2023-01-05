@@ -13,12 +13,10 @@
 
 class CollezioneNoteImportanti: public CollezioneNote{
 public:
+    CollezioneNoteImportanti(string nome) : CollezioneNote(nome) {
+    }
     virtual void AddNoteToList(Nota *nota) override;
-    virtual ~CollezioneNoteImportanti();
-
-private:
-    list<Nota *> listaToDoImportanti;
-    string nomeLista;
+    virtual ~CollezioneNoteImportanti()=default;
 };
 
 

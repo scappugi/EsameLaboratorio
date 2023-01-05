@@ -3,10 +3,10 @@
 //
 
 #include "CollezioneNote.h"
-void CollezioneNote::AddNoteToList(Nota *nota) {
-    if (nota->isInseritoInUnaLista() == 0) { //controllo che non sia già stato inserito in un altra lista
-        nota->setInseritoInUnaLista(1);
-        listaToDo.push_back(nota); //inserisco in una lista
+void CollezioneNote::AddNoteToList(Nota &nota) {
+    if (nota.isInseritoInUnaLista() == 0) { //controllo che non sia già stato inserito in un altra lista
+        nota.setInseritoInUnaLista(1);
+        listaToDo.push_back(&nota); //inserisco in una lista
         notify();
     }
     else cout << "la seguente nota è gia stata inserita in un altra lista, non puoi riserirla anche qua"; //stampare i dettagli della lista
@@ -37,9 +37,9 @@ void CollezioneNote::unsubscribe(Observer *o) {
     this->observer= nullptr; //tolto l' observer
 }
 
-void CollezioneNote::notify() {
+void CollezioneNote::notify() { //da qua si vede che ho implementato l' observer in modalità push.
 
-    observer->update(getNomeLista(),listaToDo.size()); //passo al notify i numeri inerenti al numero di cose attuali in quella lista
+    observer->update(this->getNomeLista(),this->listaToDo.size()); //passo al notify i numeri inerenti al numero di cose attuali in quella lista
 }
 
 string CollezioneNote::getNomeLista() {
@@ -60,7 +60,7 @@ bool CollezioneNote::bloccaNota(Nota *nota) {
             return false; //caso di fallimento
         }
     }
-}
+    return 0;}
 
 bool CollezioneNote::sbloccaNota(Nota *nota) {
     for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
@@ -73,12 +73,14 @@ bool CollezioneNote::sbloccaNota(Nota *nota) {
             return false;
         }
     }
-    }
+    return 0;}
 
-void CollezioneNote::modificaNota(Nota *nota, const string& newTitle) {
+void CollezioneNote::modificaNota(const string& oldTitle, const string& newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
     for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
-        if (*itr == nota){ //la nota è in quella lista
-        nota->setNomeNota(newTitle);
+        if ((*(*itr)).getNomeNota()==oldTitle){ //la nota è in quella lista
+                if ((*(*itr)).getBlocco()==0){
+                    (*(*itr)).setNomeNota(newTitle);
+                }
         }
     }
 }
@@ -94,9 +96,9 @@ Nota* CollezioneNote::getNota(const string& nomeNota) {
         if(it->getNomeNota()==nomeNota)
             return it; //ritorno la nota che ha il nome cercato
     }
-}
+    return 0;}
 
-void CollezioneNote::aumentaPrioritàNota(Nota *nota) {
+void CollezioneNote::aumentaPrioritaNota(Nota *nota) {
     for(auto it : listaToDo){
         if(it == nota){
             it->setPriorita(1);//imposta la priorità ad alta
@@ -104,11 +106,13 @@ void CollezioneNote::aumentaPrioritàNota(Nota *nota) {
     }
 }
 
-void CollezioneNote::diminuisciPrioritàNota(Nota *nota) {
+void CollezioneNote::diminuisciPrioritaNota(Nota *nota) {
     for(auto it : listaToDo){
         if(it == nota){
             it->setPriorita(0);//imposta la priorità ad alta
         }
     }
 }
+
+
 

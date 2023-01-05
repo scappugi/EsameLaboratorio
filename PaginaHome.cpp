@@ -55,25 +55,25 @@ void PaginaHome::aggiungiNotaACollezioneImportanti(Nota *nota,const string& Nome
     }
 }
 
-void PaginaHome::setAltaPriorità(Nota *nota,const string& nomeCollezione) {
+void PaginaHome::setAltaPriorita(Nota *nota,const string& nomeCollezione) {
     auto it = collezioneNote.find(nomeCollezione);
     if ( it != collezioneNote.end()){
-        it->second->aumentaPrioritàNota(nota);//in questo metodo si aumenta automaticamente la priorità di una nota
+        it->second->aumentaPrioritaNota(nota);//in questo metodo si aumenta automaticamente la priorità di una nota
     }
 }
 
-void PaginaHome::update(string name, int size) {
-
+void PaginaHome::update(string name, int size) { //stampa a schermata il numero di note nella collezione con il nome passato come parametro
+    std::cout<<"la collezione con nome" << name <<"ha in questo momento n: "<<size<<" note"<<endl;
 }
 
-void PaginaHome::setBassaPriorità(Nota *nota,const string& nomeCollezione) {
+void PaginaHome::setBassaPriorita(Nota *nota,const string& nomeCollezione) {
     auto it = collezioneNoteImportanti.find(nomeCollezione);
     if ( it != collezioneNoteImportanti.end()){
-        it->second->diminuisciPrioritàNota(nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
+        it->second->diminuisciPrioritaNota(nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
     }
     auto itr=collezioneNote.find(nomeCollezione);
     if ( itr != collezioneNote.end()){
-        itr->second->diminuisciPrioritàNota(nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
+        itr->second->diminuisciPrioritaNota(nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
     }
 }
 
@@ -110,7 +110,7 @@ void PaginaHome::spostaNota(Nota *nota, const string& collezioneIniziale, const 
     }
     auto it1 =collezioneNote.find(collezionefinale);
     if(it1 != collezioneNote.end()){
-        it1->second->AddNoteToList(nota);
+        it1->second->AddNoteToList(*nota);
     }
     auto itr1 =collezioneNoteImportanti.find(collezionefinale);
     if(itr1 != collezioneNoteImportanti.end()){
@@ -132,4 +132,5 @@ void PaginaHome::eliminaNota(const string &nomeCollezione, Nota *nota) {
 
 
 
-//pensare a se fare un metodo per le liste prioritarie o no
+
+

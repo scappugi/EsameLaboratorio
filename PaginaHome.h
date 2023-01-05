@@ -23,8 +23,8 @@ public:
     bool verificaImportanza(Nota &collezioneNote); //verifica se una nota è settata come importante o no
     void aggiungiNotaACollezioneBase(Nota *nota, const string& NomeCollezione);
     void aggiungiNotaACollezioneImportanti(Nota *nota, const string& NomeCollezione);
-    void setAltaPriorità(Nota *nota, const string& nomeCollezione); //permette di settare una nota con priorità pari a 1(High).
-    void setBassaPriorità(Nota *nota, const string& nomeCollezione);
+    void setAltaPriorita(Nota *nota, const string& nomeCollezione); //permette di settare una nota con priorità pari a 1(High).
+    void setBassaPriorita(Nota *nota, const string& nomeCollezione);
     void setBloccoNota(Nota *nota, const string &nomeCollezione);
     void setBloccaTutteLeNote(const string &nomeCollezione); //blocca tutte le note di nomeCollezione
     void spostaNota(Nota *nota, const string& collezioneIniziale, const string& collezionefinale);
@@ -32,15 +32,11 @@ public:
     void eliminaCollezione(const string& nomeCollezione);
 
 
-    ///metodi di ricerca nelle collezioni
-    Nota* ricercaCollezioneL(const string& nomeCollezione); //low priority
-    Nota* ricercaCollezioneH(const string& nomeCollezione); //high priority
-
 
     ////metodi inerenti al pattern Observer
 
     virtual void update(string name ,int size) override; //inserisco dimensione attuale della lista come parametro di update
-    virtual ~PaginaHome();
+    virtual ~PaginaHome()=default;
     
 private:
     std::map<string , CollezioneNote * > collezioneNote;

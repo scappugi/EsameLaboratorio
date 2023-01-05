@@ -10,13 +10,14 @@
 using namespace  std;
 
 class Nota {
+public: Nota (string nome, string descrizione=0): nomeNota(nome), descrizioneNota(descrizione){}
 private:
     string nomeNota;
     string descrizioneNota;
-    bool blocco;
-    bool priorita;
-    bool inseritoInUnaLista;
-    bool inseritoInUnaListaHpriorita;
+    bool blocco=0;
+    bool priorita=0;
+    bool inseritoInUnaLista=0;
+    bool inseritoInUnaListaHpriorita=0;
 public:
     const string getNomeNota() const;
 
@@ -42,7 +43,7 @@ public:
 
     void setInseritoInUnaListaHpriorita(bool inseritoInUnaListaHpriorita);
 
-
+    virtual ~Nota()=default;
 };
 
 
