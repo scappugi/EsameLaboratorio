@@ -14,15 +14,18 @@ void CollezioneNote::AddNoteToList(Nota *nota) {
                 << "la seguente nota è gia stata inserita in un altra lista, non puoi riserirla anche qua"; //stampare i dettagli della lista
 }
 
-void CollezioneNote::removeToList(Nota *nota) {
+bool CollezioneNote::removeToList(Nota *nota) {
     for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
         if (*itr == nota) {
             if (nota->getBlocco() == 0) {
                 listaToDo.remove(nota);
                 nota->setInseritoInUnaLista(0); //permette alla nota di essere riserita in una lista
                 notify();
+                return true;
             } else cout << "il dato che stai provado ad eliminare è bloccato, non puoi eliminarlo";
+            return false;
         } else cout << "il dato che stai provado ad eliminare non esiste in questa lista" << endl;
+        return false;
     }
 }
 
@@ -95,10 +98,9 @@ bool CollezioneNote::sbloccaNota(Nota *nota) {
     return 0;
 }
 
-void CollezioneNote::modificaNota(const string &oldTitle,
-                                  const string &newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
+void CollezioneNote::modificaNota(Nota *nota,const string &newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
     for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
-        if ((*(*itr)).getNomeNota() == oldTitle) { //la nota è in quella lista
+        if (*itr==nota) { //la nota è in quella lista
             if ((*(*itr)).getBlocco() == 0) {
                 (*(*itr)).setNomeNota(newTitle);
             }

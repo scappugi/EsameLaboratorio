@@ -20,7 +20,7 @@ public:
 
     ///metodi gestione lista
     virtual void AddNoteToList(Nota *nota); //NON AGGIUNGERE NOTE CON LO STESSO TITOLO, ESSO DEVE ESSERE UNIVOCO
-    virtual void removeToList(Nota *nota);
+    virtual bool removeToList(Nota *nota);
     virtual void removeAndDestroyNote(Nota *nota);
     void setNomeLista(const string& name);
     bool bloccaNota(Nota *nota); //ritorna 1 se bloccata con successo altrimenti 0
@@ -28,7 +28,7 @@ public:
     void bloccaTutteLeNote();//pone tutte le note su bloccato
     void aumentaPrioritaNota(Nota *nota);
     void diminuisciPrioritaNota(Nota *nota);
-    void modificaNota(const string& oldTitle, const string& newTitle); //vuole andare a cambiare il titolo della nota
+    void modificaNota(Nota *nota,const string& newTitle); //vuole andare a cambiare il titolo della nota
     Nota* getNota(const string& nomeNota); //restituisce la prima nota con quel nome
     string getNomeLista();
     ///fine
