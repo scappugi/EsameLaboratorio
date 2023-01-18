@@ -24,7 +24,11 @@ paginaHome.addCollezione(&collezione1);
 
 collezione1.AddNoteToList(&nota3); //aggiunge alla collezione e stampa con observer
 collezione1.bloccaNota(&nota3);
-collezione1.removeAndDestroyNote(&nota3); //distrugge dalla collezione e stampa con observer
+collezione1.AddNoteToList(&nota4);
+//collezione1.removeAndDestroyNote(&nota3); //distrugge dalla collezione e stampa con observer
+collezione1.stampaNote();
+collezione1.removeToList(&nota4);
+collezione1.stampaNote();
 
 
 

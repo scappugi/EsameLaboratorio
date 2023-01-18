@@ -10,7 +10,8 @@
 using namespace  std;
 
 class Nota {
-public: Nota (string nome, string descrizione=""): nomeNota(nome), descrizioneNota(descrizione){}
+public: explicit Nota (string nome): nomeNota(nome){}
+        Nota( string nome,string descrizione): nomeNota(nome),descrizioneNota(descrizione){}
 private:
     string nomeNota;
     string descrizioneNota;
@@ -43,7 +44,7 @@ public:
 
     void setInseritoInUnaListaHpriorita(bool inseritoInUnaListaHpriorita);
 
-    virtual ~Nota()=default;
+    ~Nota()=default;
 };
 
 

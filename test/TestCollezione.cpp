@@ -13,6 +13,7 @@ TEST(TestCollezione, TestInserimento){
     ASSERT_EQ(&notaTest, c.getNota(nomeTest));
 }
 
+
 TEST(TestCollezione, TestRemoveNote){
     CollezioneNote c("test");
     string nomeTest="nomeTest";
@@ -27,7 +28,7 @@ TEST(TestCollezione, TestRemoveNote){
 
     ASSERT_TRUE(c.removeToList(&notaTest));
 
-    ASSERT_FALSE(c.removeToList(&notaTest)); //una volta fatto il remove non si dovrebbe più poter rimuovere
+    EXPECT_FALSE(c.removeToList(&notaTest)); //una volta fatto il remove non si dovrebbe più poter rimuovere
 }
 
 TEST(TestCollezione, TestRenameNote){
@@ -45,5 +46,5 @@ TEST(TestCollezione, TestRenameNote){
     ASSERT_FALSE(c.getNota(OldNomeTest));
 
     ASSERT_EQ(&notaTest,c.getNota(NewNomeTest));
-    
+
 }
