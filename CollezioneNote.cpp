@@ -15,64 +15,66 @@ void CollezioneNote::AddNoteToList(Nota *nota) {
 }
 
 bool CollezioneNote::removeToList(Nota *nota) {
-   /* for (const auto itr:listaToDo) {
-        if (itr == nota) {
-            if (nota->getBlocco() == false) {
-                listaToDo.remove(nota);
-                nota->setInseritoInUnaLista(false); //permette alla nota di essere riserita in una lista
-                notify();
-                return true;
-            } else cout << "il dato che stai provado ad eliminare e' bloccato, non puoi eliminarlo"<<endl;
+    /* for (auto itr:listaToDo) {
+         if (itr == nota) {
+             if (nota->getBlocco() == false) {
+                 listaToDo.remove(nota);
+                 nota->setInseritoInUnaLista(false); //permette alla nota di essere riserita in una lista
+                 notify();
+                 return true;
+             } else cout << "il dato che stai provado ad eliminare e' bloccato, non puoi eliminarlo"<<endl;
+             return false;
+         } else cout << "il dato che stai provado ad eliminare non esiste in questa lista" << endl;
+         return false;
+     }
+     return false;*/
+    if (cercaNote(nota) == true) {
+        if (nota->getBlocco() == false) {
+            listaToDo.remove(nota);
+            nota->setInseritoInUnaLista(false);
+            cout << "il dato e' stato eliminato" << endl;
+            notify();
+            return true;
+        } else {
+            cout << "il dato che vuoi eliminare e' bloccato in questo momento" << endl;
             return false;
-        } else cout << "il dato che stai provado ad eliminare non esiste in questa lista" << endl;
+        }
+    } else {
+        cout << "il dato che stai provando al eliminare non esiste in questa lista" << endl;
         return false;
     }
-    return false;*/
-   if (cercaNote(nota)==true) {
-       if (nota->getBlocco()==false){
-       listaToDo.remove(nota);
-       notify();
-           return  true;}
-       else {
-           cout << "il dato che vuoi eliminare è bloccato in questo momento" << endl;
-           return false;
-       }
-   }
-   else  {
-       cout<<"il dato che stai provando al eliminare non esiste in questa lista" <<endl;
-       return false;
-   }
 }
 
 void CollezioneNote::removeAndDestroyNote(Nota *nota) {
     for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
         if (*itr == nota) {
             if (nota->getBlocco() == false) {
-                listaToDo.erase(itr);
+                listaToDo.remove(nota);
                 nota->setInseritoInUnaLista(0); //permette alla nota di essere riserita in una lista
                 delete nota; //elimina il puntatore nota.
                 notify();
-            } else {
-                cout << "il dato -- "<<nota->getNomeNota()<< " -- e' bloccato, non puoi eliminarlo"<<endl;
             }
-        } else {
+            else {
+                cout << "il dato -- " << nota->getNomeNota() << " -- e' bloccato, non puoi eliminarlo" << endl;
+            }
+        }
+        else {
             cout << "il dato che stai provado ad eliminare non esiste in questa lista" << endl;
         }
     }
 }
 
 void CollezioneNote::subscribe(Observer *o) {
-    this->observer = o;//aggiunto observer verso il quale dovremmo inviare notifche
+    this->o = o;//aggiunto observer verso il quale dovremmo inviare notifche
 }
 
 void CollezioneNote::unsubscribe(Observer *o) {
-    this->observer = nullptr; //tolto l' observer
+    this->o = nullptr; //tolto l' observer
 }
 
 void CollezioneNote::notify() { //da qua si vede che ho implementato l' observer in modalità push.
-
-    observer->update(this->getNomeLista(),
-                     this->listaToDo.size()); //passo al notify i numeri inerenti al numero di cose attuali in quella lista
+    if(o!= nullptr)//controllo se ho un observer da avvisare.
+    o->update(this->getNomeLista(),this->listaToDo.size()); //passo al notify i numeri inerenti al numero di cose attuali in quella lista
 }
 
 string CollezioneNote::getNomeLista() {
@@ -111,9 +113,10 @@ bool CollezioneNote::sbloccaNota(Nota *nota) {
     return false;
 }
 
-void CollezioneNote::modificaNota(Nota *nota,const string &newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
+void CollezioneNote::modificaNota(Nota *nota,
+                                  const string &newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
     for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
-        if (*itr==nota) { //la nota è in quella lista
+        if (*itr == nota) { //la nota è in quella lista
             if ((*(*itr)).getBlocco() == 0) {
                 (*(*itr)).setNomeNota(newTitle);
             }
@@ -152,21 +155,21 @@ void CollezioneNote::diminuisciPrioritaNota(Nota *nota) {
 }
 
 void CollezioneNote::stampaNote() {
-    for (auto it: listaToDo){
-        if (!listaToDo.empty()){
-        cout<<it->getNomeNota()<<endl;}
-        else cout<<"lista vuota"<<endl;
+    for (auto it: listaToDo) {
+        if (!listaToDo.empty()) {
+            cout << it->getNomeNota() << endl;
+        } else cout << "lista vuota" << endl;
     }
 }
 
 bool CollezioneNote::cercaNote(Nota *nota) {
-    for (auto it: listaToDo){
-        if (it->getNomeNota().compare(nota->getNomeNota())){
-            return true;}
-        else{
-            return false;
-         }
+    for (auto it: listaToDo) {
+        //if (it->getNomeNota().compare(nota->getNomeNota())==0){ //confronto le stringhe per vedere se esiste l'' elemento in quella lista
+        if (it == nota) {
+            return true;
+        }
     }
+    return false;
 }
 
 

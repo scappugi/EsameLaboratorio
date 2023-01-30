@@ -15,19 +15,16 @@ using namespace std;
 
 class CollezioneNote : public Subject {
 public:
-    explicit CollezioneNote(const string nomeLista): nomeLista(nomeLista){ //costruttore che assegna un nome alla list
+    explicit CollezioneNote(const string& nomeLista): nomeLista(nomeLista){ //costruttore che assegna un nome alla list
       }
 
-    ~CollezioneNote() override = default;
+     ~CollezioneNote() override = default;
 
     ///metodi gestione lista
     virtual void AddNoteToList(Nota *nota); //NON AGGIUNGERE NOTE CON LO STESSO TITOLO, ESSO DEVE ESSERE UNIVOCO
     virtual bool removeToList(Nota *nota);
-
     virtual void removeAndDestroyNote(Nota *nota);
-
     void setNomeLista(const string &name);
-
     bool bloccaNota(Nota *nota); //ritorna 1 se bloccata con successo altrimenti 0
     bool sbloccaNota(Nota *nota); //permette di togliere il blocco messo da bloccaNota
     void bloccaTutteLeNote();//pone tutte le note su bloccato
@@ -51,7 +48,7 @@ public:
 
 
 protected:
-    Observer *observer;
+    //Observer *observer;
     list<Nota *> listaToDo;
     string nomeLista;//utilizzo una sola variabile poichè ci sara da notificare solamente PaginaHome degli aggiornamenti
 };

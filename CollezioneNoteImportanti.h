@@ -16,7 +16,6 @@ public:
     CollezioneNoteImportanti(string nome) : CollezioneNote(nome) {
     }
     virtual void AddNoteToList(Nota *nota) override;
-    virtual ~CollezioneNoteImportanti()=default;
 };
 
 

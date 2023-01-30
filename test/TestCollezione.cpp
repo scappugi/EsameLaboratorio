@@ -31,6 +31,7 @@ TEST(TestCollezione, TestRemoveNote){
     EXPECT_FALSE(c.removeToList(&notaTest)); //una volta fatto il remove non si dovrebbe più poter rimuovere
 }
 
+
 TEST(TestCollezione, TestRenameNote){
     CollezioneNote c("test");
     string OldNomeTest="OldNomeTest";
