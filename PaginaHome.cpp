@@ -17,16 +17,15 @@ void PaginaHome::addCollezioneNoteImportanti(CollezioneNoteImportanti *collezion
 
 
 void PaginaHome::creaNuovaCollezione( const string &nomeCollezione) {
-        if (collezioneNote.find(nomeCollezione) != collezioneNote.end()){
+        if (collezioneNote.find(nomeCollezione) == collezioneNote.end()){
         //questo if ricerca se abbiamo non già una collezione di liste con questo nome
-        CollezioneNote* nuovaCollezione;
-        nuovaCollezione->setNomeLista(nomeCollezione);
+        CollezioneNote *nuovaCollezione=new CollezioneNote(nomeCollezione); //crea una nuova collezione
         addCollezione(nuovaCollezione);
         }
-        else cout<<"hai gia creato una collezione con questo nome";
+        else cout<<"hai gia creato una collezione con questo nome"<<endl;
 }
 void PaginaHome::creaNuovaCollezioneNoteImportanti( const string &nomeCollezione) {
-    if (collezioneNoteImportanti.find(nomeCollezione) != collezioneNoteImportanti.end()){
+    if (collezioneNoteImportanti.find(nomeCollezione) == collezioneNoteImportanti.end()){
         //questo if ricerca se abbiamo non già una collezione di liste con questo nome
         CollezioneNoteImportanti* nuovaCollezione;
         nuovaCollezione->setNomeLista(nomeCollezione);
@@ -127,6 +126,19 @@ void PaginaHome::eliminaNota(const string &nomeCollezione, Nota *nota) {
     if(itr != collezioneNoteImportanti.end()){
         itr->second->removeAndDestroyNote(nota);
     }
+}
+
+bool PaginaHome::contieneCollezioni(const string &collection) {
+    return (collezioneNote.find(collection) != collezioneNote.end()); //vero se la trova, falso il contrario
+}
+
+void PaginaHome::eliminaCollezione(const string &nomeCollezione) {
+
+    auto it = collezioneNote.find(nomeCollezione);
+    if (it != collezioneNote.end()) {
+    collezioneNote.erase(it);
+    }
+    else cout<<"la collezione "<<nomeCollezione<<" non esiste."<<endl;
 }
 
 

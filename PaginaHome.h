@@ -30,6 +30,7 @@ public:
     void spostaNota(Nota *nota, const string& collezioneIniziale, const string& collezionefinale);
     void eliminaNota(const string& nomeCollezione, Nota *nota ); //gestisce il caso di errore con una eccezione (caso in cui la nota/colezione siano bloccate)
     void eliminaCollezione(const string& nomeCollezione);
+    bool contieneCollezioni(const string& nomeCollezione);
 
 
 

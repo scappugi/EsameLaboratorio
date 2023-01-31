@@ -53,12 +53,10 @@ void CollezioneNote::removeAndDestroyNote(Nota *nota) {
                 nota->setInseritoInUnaLista(0); //permette alla nota di essere riserita in una lista
                 delete nota; //elimina il puntatore nota.
                 notify();
-            }
-            else {
+            } else {
                 cout << "il dato -- " << nota->getNomeNota() << " -- e' bloccato, non puoi eliminarlo" << endl;
             }
-        }
-        else {
+        } else {
             cout << "il dato che stai provado ad eliminare non esiste in questa lista" << endl;
         }
     }
@@ -73,8 +71,9 @@ void CollezioneNote::unsubscribe(Observer *o) {
 }
 
 void CollezioneNote::notify() { //da qua si vede che ho implementato l' observer in modalità push.
-    if(o!= nullptr)//controllo se ho un observer da avvisare.
-    o->update(this->getNomeLista(),this->listaToDo.size()); //passo al notify i numeri inerenti al numero di cose attuali in quella lista
+    if (o != nullptr)//controllo se ho un observer da avvisare.
+        o->update(this->getNomeLista(),
+                  this->listaToDo.size()); //passo al notify i numeri inerenti al numero di cose attuali in quella lista
 }
 
 string CollezioneNote::getNomeLista() {
@@ -125,8 +124,12 @@ void CollezioneNote::modificaNota(Nota *nota,
 }
 
 void CollezioneNote::bloccaTutteLeNote() {
-    for (auto it: listaToDo) {
-        (*it).setBlocco(true);
+    if (listaToDo.empty()) {
+        cout << "lista vuota, non c'e' nulla da bloccare";
+    } else {
+        for (auto it: listaToDo) {
+            (*it).setBlocco(true);
+        }
     }
 }
 

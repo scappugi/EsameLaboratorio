@@ -49,3 +49,29 @@ TEST(TestCollezione, TestRenameNote){
     ASSERT_EQ(&notaTest,c.getNota(NewNomeTest));
 
 }
+
+
+TEST(TestCollezione, TestLockNote){
+    CollezioneNote c("test");
+    string nomeTest="NomeTest";
+    Nota notaTest(nomeTest);
+    c.AddNoteToList(&notaTest);
+    bool preBlocco=c.getNota(nomeTest)->getBlocco();
+    c.bloccaNota(&notaTest);
+    bool afterBlocco=c.getNota(nomeTest)->getBlocco();
+    ASSERT_NE(preBlocco,afterBlocco);
+}
+
+TEST(TestCollezione, TestLockAllNote){
+    CollezioneNote c("test");
+    string nomeTest="NomeTest";
+    Nota notaTest(nomeTest);
+    string nomeTest2="NomeTest2";
+    Nota notaTest2(nomeTest2);
+    c.AddNoteToList(&notaTest);
+    c.AddNoteToList(&notaTest2);
+    c.bloccaTutteLeNote();
+    ASSERT_EQ(notaTest.getBlocco(), true);
+    ASSERT_TRUE(notaTest2.getBlocco());
+}
+
