@@ -23,7 +23,7 @@ public:
     ///metodi gestione lista
     virtual void AddNoteToList(Nota *nota); //NON AGGIUNGERE NOTE CON LO STESSO TITOLO, ESSO DEVE ESSERE UNIVOCO
     virtual bool removeToList(Nota *nota);
-    virtual void removeAndDestroyNote(Nota *nota);
+    virtual bool removeAndDestroyNote(Nota *nota);
     void setNomeLista(const string &name);
     bool bloccaNota(Nota *nota); //ritorna 1 se bloccata con successo altrimenti 0
     bool sbloccaNota(Nota *nota); //permette di togliere il blocco messo da bloccaNota
@@ -34,7 +34,7 @@ public:
     Nota *getNota(const string &nomeNota); //restituisce la prima nota con quel nome
     string getNomeLista();
     void stampaNote();
-    bool cercaNote(Nota *nota);
+    bool cercaNote(const Nota *nota);
     ///fine
 
     ///metodi per pattern observer

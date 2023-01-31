@@ -15,6 +15,11 @@ TEST(TestCollezione, TestInserimento){
 
 
 TEST(TestCollezione, TestRemoveNote){
+    cout<<endl;
+    cout<<endl;
+    cout<<endl;
+    cout<<"------ Inizio TestRemoveNote "<<endl;
+    cout<<endl;
     CollezioneNote c("test");
     string nomeTest="nomeTest";
     Nota notaTest(nomeTest);
@@ -29,10 +34,16 @@ TEST(TestCollezione, TestRemoveNote){
     ASSERT_TRUE(c.removeToList(&notaTest));
 
     EXPECT_FALSE(c.removeToList(&notaTest)); //una volta fatto il remove non si dovrebbe più poter rimuovere
+    cout<<"----------------------------------------------------"<<endl;
 }
 
 
 TEST(TestCollezione, TestRenameNote){
+    cout<<endl;
+    cout<<endl;
+    cout<<endl;
+    cout<<"------ Inizio  TestRenameNote "<<endl;
+    cout<<endl;
     CollezioneNote c("test");
     string OldNomeTest="OldNomeTest";
     Nota notaTest(OldNomeTest);
@@ -47,11 +58,17 @@ TEST(TestCollezione, TestRenameNote){
     ASSERT_FALSE(c.getNota(OldNomeTest));
 
     ASSERT_EQ(&notaTest,c.getNota(NewNomeTest));
+    cout<<"----------------------------------------------------"<<endl;
 
 }
 
 
 TEST(TestCollezione, TestLockNote){
+    cout<<endl;
+    cout<<endl;
+    cout<<endl;
+    cout<<"------ Inizio  TestLockNote "<<endl;
+    cout<<endl;
     CollezioneNote c("test");
     string nomeTest="NomeTest";
     Nota notaTest(nomeTest);
@@ -60,9 +77,15 @@ TEST(TestCollezione, TestLockNote){
     c.bloccaNota(&notaTest);
     bool afterBlocco=c.getNota(nomeTest)->getBlocco();
     ASSERT_NE(preBlocco,afterBlocco);
+    cout<<"----------------------------------------------------"<<endl;
 }
 
 TEST(TestCollezione, TestLockAllNote){
+    cout<<endl;
+    cout<<endl;
+    cout<<endl;
+    cout<<"------ Inizio  TestLockAllNote "<<endl;
+    cout<<endl;
     CollezioneNote c("test");
     string nomeTest="NomeTest";
     Nota notaTest(nomeTest);
@@ -73,5 +96,6 @@ TEST(TestCollezione, TestLockAllNote){
     c.bloccaTutteLeNote();
     ASSERT_EQ(notaTest.getBlocco(), true);
     ASSERT_TRUE(notaTest2.getBlocco());
+    cout<<"----------------------------------------------------"<<endl;
 }
 

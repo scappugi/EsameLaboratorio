@@ -15,19 +15,6 @@ void CollezioneNote::AddNoteToList(Nota *nota) {
 }
 
 bool CollezioneNote::removeToList(Nota *nota) {
-    /* for (auto itr:listaToDo) {
-         if (itr == nota) {
-             if (nota->getBlocco() == false) {
-                 listaToDo.remove(nota);
-                 nota->setInseritoInUnaLista(false); //permette alla nota di essere riserita in una lista
-                 notify();
-                 return true;
-             } else cout << "il dato che stai provado ad eliminare e' bloccato, non puoi eliminarlo"<<endl;
-             return false;
-         } else cout << "il dato che stai provado ad eliminare non esiste in questa lista" << endl;
-         return false;
-     }
-     return false;*/
     if (cercaNote(nota) == true) {
         if (nota->getBlocco() == false) {
             listaToDo.remove(nota);
@@ -45,21 +32,23 @@ bool CollezioneNote::removeToList(Nota *nota) {
     }
 }
 
-void CollezioneNote::removeAndDestroyNote(Nota *nota) {
-    for (auto itr = listaToDo.begin(); itr != listaToDo.end(); itr++) {
-        if (*itr == nota) {
+bool CollezioneNote::removeAndDestroyNote(Nota *nota) {
+    for (auto itr: listaToDo) {
+        if (itr == nota) {
             if (nota->getBlocco() == false) {
                 listaToDo.remove(nota);
                 nota->setInseritoInUnaLista(0); //permette alla nota di essere riserita in una lista
                 delete nota; //elimina il puntatore nota.
                 notify();
+                return true;
             } else {
                 cout << "il dato -- " << nota->getNomeNota() << " -- e' bloccato, non puoi eliminarlo" << endl;
+
             }
-        } else {
-            cout << "il dato che stai provado ad eliminare non esiste in questa lista" << endl;
         }
     }
+    cout << "il dato che stai provado ad eliminare non esiste in questa lista" << endl;
+    return false;
 }
 
 void CollezioneNote::subscribe(Observer *o) {
@@ -165,7 +154,7 @@ void CollezioneNote::stampaNote() {
     }
 }
 
-bool CollezioneNote::cercaNote(Nota *nota) {
+bool CollezioneNote::cercaNote(const Nota *nota) {
     for (auto it: listaToDo) {
         //if (it->getNomeNota().compare(nota->getNomeNota())==0){ //confronto le stringhe per vedere se esiste l'' elemento in quella lista
         if (it == nota) {
