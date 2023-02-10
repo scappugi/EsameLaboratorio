@@ -9,8 +9,8 @@ TEST(TestCollezione, TestInserimento){
     CollezioneNote c("test");
     string nomeTest="nomeTest";
     Nota notaTest(nomeTest);
-    c.AddNoteToList(&notaTest);
-    ASSERT_EQ(&notaTest, c.getNota(nomeTest));
+    c.AddNoteToList(notaTest);
+    ASSERT_TRUE(c.cercaNote(notaTest));
 }
 
 
@@ -23,17 +23,17 @@ TEST(TestCollezione, TestRemoveNote){
     CollezioneNote c("test");
     string nomeTest="nomeTest";
     Nota notaTest(nomeTest);
-    c.AddNoteToList(&notaTest);
+    c.AddNoteToList(notaTest);
 
     //blocco nota per fare test
-    c.bloccaNota(&notaTest);
-    ASSERT_EQ(false, c.removeToList(&notaTest));
+    c.bloccaNota(notaTest);
+    ASSERT_EQ(false, c.removeToList(notaTest));
 
-    c.sbloccaNota(&notaTest);
+    c.sbloccaNota(notaTest);
 
-    ASSERT_TRUE(c.removeToList(&notaTest));
+    ASSERT_TRUE(c.removeToList(notaTest));
 
-    EXPECT_FALSE(c.removeToList(&notaTest)); //una volta fatto il remove non si dovrebbe più poter rimuovere
+    EXPECT_FALSE(c.removeToList(notaTest)); //una volta fatto il remove non si dovrebbe più poter rimuovere
     cout<<"----------------------------------------------------"<<endl;
 }
 
@@ -47,17 +47,19 @@ TEST(TestCollezione, TestRenameNote){
     CollezioneNote c("test");
     string OldNomeTest="OldNomeTest";
     Nota notaTest(OldNomeTest);
-    c.AddNoteToList(&notaTest);
+    c.AddNoteToList(notaTest);
 
     string NewNomeTest="NewNomeTest";
 
-    ASSERT_EQ(&notaTest, c.getNota(OldNomeTest));
+    ASSERT_TRUE(c.cercaNote(notaTest) );
 
-    c.modificaNota(&notaTest, NewNomeTest);
+    c.modificaNota(notaTest, NewNomeTest);
 
-    ASSERT_FALSE(c.getNota(OldNomeTest));
+    Nota nota1(OldNomeTest);
+    ASSERT_FALSE(c.cercaNote(nota1));
+    Nota nota2(NewNomeTest);
+    ASSERT_TRUE(c.cercaNote(nota2));
 
-    ASSERT_EQ(&notaTest,c.getNota(NewNomeTest));
     cout<<"----------------------------------------------------"<<endl;
 
 }
@@ -72,10 +74,11 @@ TEST(TestCollezione, TestLockNote){
     CollezioneNote c("test");
     string nomeTest="NomeTest";
     Nota notaTest(nomeTest);
-    c.AddNoteToList(&notaTest);
-    bool preBlocco=c.getNota(nomeTest)->getBlocco();
-    c.bloccaNota(&notaTest);
-    bool afterBlocco=c.getNota(nomeTest)->getBlocco();
+    c.AddNoteToList(notaTest);
+    bool preBlocco=c.getNota(nomeTest).getBlocco();
+    c.bloccaNota(notaTest);
+    bool afterBlocco=c.getNota(nomeTest).getBlocco();
+    cout<<preBlocco<<afterBlocco<<endl;
     ASSERT_NE(preBlocco,afterBlocco);
     cout<<"----------------------------------------------------"<<endl;
 }
@@ -91,11 +94,11 @@ TEST(TestCollezione, TestLockAllNote){
     Nota notaTest(nomeTest);
     string nomeTest2="NomeTest2";
     Nota notaTest2(nomeTest2);
-    c.AddNoteToList(&notaTest);
-    c.AddNoteToList(&notaTest2);
+    c.AddNoteToList(notaTest);
+    c.AddNoteToList(notaTest2);
     c.bloccaTutteLeNote();
-    ASSERT_EQ(notaTest.getBlocco(), true);
-    ASSERT_TRUE(notaTest2.getBlocco());
+    ASSERT_EQ(c.getNota(nomeTest).getBlocco(), true);
+    ASSERT_TRUE(c.getNota(nomeTest2).getBlocco());
     cout<<"----------------------------------------------------"<<endl;
 }
 

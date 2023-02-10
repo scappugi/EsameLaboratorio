@@ -19,8 +19,8 @@ public:
     ///metodi per aggiungere
     void addCollezione(CollezioneNote *collezioneNote); //aggiungo alla mappa una chiave che è il nome della mia collezione + gli passo la collezione stessa
     void addCollezioneNoteImportanti(CollezioneNoteImportanti *collezioneNoteImportanti);
-    void aggiungiNotaACollezioneBase(Nota *nota, const string& NomeCollezione);
-    void aggiungiNotaACollezioneImportanti(Nota *nota, const string& NomeCollezione);
+    bool aggiungiNotaACollezioneBase(Nota &nota, const string& NomeCollezione);
+    void aggiungiNotaACollezioneImportanti(Nota &nota, const string& NomeCollezione);
 
     ///metodi per creare
     void creaNuovaCollezione(const string& nomeCollezione);
@@ -31,30 +31,30 @@ public:
     bool verificaBloccoNota(const Nota &nomeNota);
 
     ///metodi set
-    void setAltaPriorita(Nota *nota, const string& nomeCollezione); //permette di settare una nota con priorità pari a 1(High).
-    void setBassaPriorita(Nota *nota, const string& nomeCollezione);
-    void setBloccoNota(Nota *nota, const string &nomeCollezione);
+    void setAltaPriorita(Nota &nota, const string& nomeCollezione); //permette di settare una nota con priorità pari a 1(High).
+    void setBassaPriorita(Nota &nota, const string& nomeCollezione);
+    void setBloccoNota(Nota &nota, const string &nomeCollezione);
     void setBloccaTutteLeNote(const string &nomeCollezione); //blocca tutte le note di nomeCollezione
 
     ///metodi per eliminare
-    bool eliminaNota(const string& nomeCollezione, Nota *nota ); //gestisce il caso di errore con una eccezione (caso in cui la nota/colezione siano bloccate)
+    bool eliminaNota(const string& nomeCollezione, Nota &nota ); //gestisce il caso di errore con una eccezione (caso in cui la nota/colezione siano bloccate)
     bool eliminaCollezione(const string& nomeCollezione);
 
 
     ///metodi per cercare e spostare
     bool contieneCollezioni(const string& nomeCollezione);
     bool contieneNote(const Nota &nota,const string& nomeCollezione);
-    void spostaNota(Nota *nota, const string& collezioneIniziale, const string& collezionefinale);
+    void spostaNota(Nota &nota, const string& collezioneIniziale, const string& collezionefinale);
 
 
     ////metodi inerenti al pattern Observer
 
-    virtual void update(string name ,int size) override; //inserisco dimensione attuale della lista come parametro di update
+    virtual void update(const string &name ,int size) override; //inserisco dimensione attuale della lista come parametro di update
     virtual ~PaginaHome()=default;
     
 private:
-    std::map<string , CollezioneNote * > collezioneNote;
-    std::map<string ,CollezioneNoteImportanti *> collezioneNoteImportanti; //preferisco differenziare le due sezioni
+    std::map<string ,CollezioneNote * > collezioneNote;
+    std::map<string ,CollezioneNoteImportanti * > collezioneNoteImportanti; //preferisco differenziare le due sezioni
 };
 
 

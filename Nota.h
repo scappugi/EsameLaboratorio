@@ -7,21 +7,23 @@
 
 
 #include <string>
-using namespace  std;
+
+using namespace std;
 
 class Nota {
-public: explicit
-        Nota (string nome): nomeNota(nome){}
+public:
+    explicit
+    Nota(string nome) : nomeNota(nome) {}
 
-        Nota( string nome,string descrizione): nomeNota(nome),descrizioneNota(descrizione){}
+    Nota(string nome, string descrizione) : nomeNota(nome), descrizioneNota(descrizione) {}
 
-        ~Nota()=default;
+    ~Nota() = default;
 
-    const string getNomeNota() const;
+    string getNomeNota() const;
 
     void setNomeNota(const string &nomeNota);
 
-    const string &getDescrizioneNota() const;
+    string getDescrizioneNota() const;
 
     void setDescrizioneNota(const string &descrizioneNota);
 
@@ -41,13 +43,17 @@ public: explicit
 
     void setInseritoInUnaListaHpriorita(bool inseritoInUnaListaHpriorita);
 
+    ///sovraccaricamento operatore ==
+     bool operator==(const Nota &nota);
+    Nota &operator=(const Nota &nota);
+
 private:
     string nomeNota;
     string descrizioneNota;
-    bool blocco=0;
-    bool priorita=0;
-    bool inseritoInUnaLista=0;
-    bool inseritoInUnaListaHpriorita=0;
+    bool blocco = false;
+    bool priorita = false;
+    bool inseritoInUnaLista = false;
+    bool inseritoInUnaListaHpriorita = false;
 };
 
 

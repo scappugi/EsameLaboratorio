@@ -5,7 +5,7 @@
 #include "PaginaHome.h"
 
 void PaginaHome::addCollezione(CollezioneNote *collezioneNote) {
-    this->collezioneNote.insert(make_pair((*collezioneNote).getNomeLista(), collezioneNote));
+    this->collezioneNote.insert(make_pair((collezioneNote)->getNomeLista(), collezioneNote));
     collezioneNote->subscribe(
             this); //metodo attach implementato qua; passo a questo metodo il mio indirizzo cosi salva subito PaginaHome come Observer
 }
@@ -13,7 +13,7 @@ void PaginaHome::addCollezione(CollezioneNote *collezioneNote) {
 
 void PaginaHome::addCollezioneNoteImportanti(CollezioneNoteImportanti *collezioneNoteImportanti) {
     this->collezioneNoteImportanti.insert(
-            make_pair((*collezioneNoteImportanti).getNomeLista(), collezioneNoteImportanti));
+            make_pair((collezioneNoteImportanti)->getNomeLista(), collezioneNoteImportanti));
     collezioneNoteImportanti->subscribe(
             this); //metodo attach implementato qua; passo a questo metodo il mio indirizzo cosi salva subito PaginaHome come Observer
 }
@@ -30,9 +30,8 @@ void PaginaHome::creaNuovaCollezione(const string &nomeCollezione) {
 void PaginaHome::creaNuovaCollezioneNoteImportanti(const string &nomeCollezione) {
     if (collezioneNoteImportanti.find(nomeCollezione) == collezioneNoteImportanti.end()) {
         //questo if ricerca se abbiamo non già una collezione di liste con questo nome
-        CollezioneNoteImportanti *nuovaCollezione;
-        nuovaCollezione->setNomeLista(nomeCollezione);
-        addCollezioneNoteImportanti(nuovaCollezione);
+        CollezioneNoteImportanti nuovaCollezione(nomeCollezione);
+        addCollezioneNoteImportanti(&nuovaCollezione);
     } else cout << "hai gia creato una collezione con questo nome";
 }
 
@@ -41,34 +40,35 @@ bool PaginaHome::verificaImportanza(const Nota &nota) {
     else return true;
 }
 
-void PaginaHome::aggiungiNotaACollezioneBase(Nota *nota, const string &nomeCollezione) {
+bool PaginaHome::aggiungiNotaACollezioneBase(Nota &nota, const string &nomeCollezione) {
     auto it = collezioneNote.find(nomeCollezione);
     if (it != collezioneNote.end()) {
         //se if positivo allora esiste una collezione con il nome cercato quindi si procede ad inserire al suo interno la nota
         it->second->AddNoteToList(nota); //accedo all elemento lista di note e inserisco la nota che dovevo inserire.
+        return true;
     }
+    else return false;
 }
 
-void PaginaHome::aggiungiNotaACollezioneImportanti(Nota *nota, const string &NomeCollezione) {
+void PaginaHome::aggiungiNotaACollezioneImportanti(Nota &nota, const string &NomeCollezione) {
     auto it = collezioneNoteImportanti.find(NomeCollezione);
     if (it != collezioneNoteImportanti.end()) {
         it->second->AddNoteToList(nota);
     }
 }
 
-void PaginaHome::setAltaPriorita(Nota *nota, const string &nomeCollezione) {
+void PaginaHome::setAltaPriorita(Nota &nota, const string &nomeCollezione) {
     auto it = collezioneNote.find(nomeCollezione);
     if (it != collezioneNote.end()) {
         it->second->aumentaPrioritaNota(nota);//in questo metodo si aumenta automaticamente la priorità di una nota
     }
 }
 
-void PaginaHome::update(string name,
-                        int size) { //stampa a schermata il numero di note nella collezione con il nome passato come parametro
+void PaginaHome::update(const string &name,int size) { //stampa a schermata il numero di note nella collezione con il nome passato come parametro
     std::cout << "la collezione -- " << name << " -- ha in questo momento n: " << size << " note " << endl;
 }
 
-void PaginaHome::setBassaPriorita(Nota *nota, const string &nomeCollezione) {
+void PaginaHome::setBassaPriorita(Nota &nota, const string &nomeCollezione) {
     auto it = collezioneNoteImportanti.find(nomeCollezione);
     if (it != collezioneNoteImportanti.end()) {
         it->second->diminuisciPrioritaNota(
@@ -76,12 +76,11 @@ void PaginaHome::setBassaPriorita(Nota *nota, const string &nomeCollezione) {
     }
     auto itr = collezioneNote.find(nomeCollezione);
     if (itr != collezioneNote.end()) {
-        itr->second->diminuisciPrioritaNota(
-                nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
+        itr->second->diminuisciPrioritaNota(nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
     }
 }
 
-void PaginaHome::setBloccoNota(Nota *nota, const string &nomeCollezione) {
+void PaginaHome::setBloccoNota(Nota &nota, const string &nomeCollezione) {
     auto it = collezioneNote.find(nomeCollezione);
     if (it != collezioneNote.end()) {
         it->second->bloccaNota(nota);
@@ -103,7 +102,7 @@ void PaginaHome::setBloccaTutteLeNote(const string &nomeCollezione) {
     }
 }
 
-void PaginaHome::spostaNota(Nota *nota, const string &collezioneIniziale, const string &collezionefinale) {
+void PaginaHome::spostaNota(Nota &nota, const string &collezioneIniziale, const string &collezionefinale) {
     auto it = collezioneNote.find(collezioneIniziale);
     if (it != collezioneNote.end()) {
         it->second->removeToList(nota);
@@ -122,14 +121,14 @@ void PaginaHome::spostaNota(Nota *nota, const string &collezioneIniziale, const 
     }
 }
 
-bool PaginaHome::eliminaNota(const string &nomeCollezione, Nota *nota) {
+bool PaginaHome::eliminaNota(const string &nomeCollezione, Nota &nota) {
     auto it = collezioneNote.find(nomeCollezione);
     if (it != collezioneNote.end()) {
-        return it->second->removeAndDestroyNote(nota);
+        return it->second->removeToList(nota);
     }
     auto itr = collezioneNoteImportanti.find(nomeCollezione);
     if (itr != collezioneNoteImportanti.end()) {
-        return itr->second->removeAndDestroyNote(nota);
+        return itr->second->removeToList(nota);
     }
     return false;
 }
@@ -158,7 +157,7 @@ bool PaginaHome::verificaBloccoNota(const Nota &nomeNota) {
 bool PaginaHome::contieneNote( Nota const &nota, const string &nomeCollezione) {
     auto it=collezioneNote.find(nomeCollezione);
     if( it != collezioneNote.end()){ //se vero allora esiste una collezione con quel nome
-        return it->second->cercaNote(&nota); //funzione che ritorna vero se la nota viene trovata.
+        return it->second->cercaNote(nota); //funzione che ritorna vero se la nota viene trovata.
     } else return false; //la collezione non è stata trovata
 }
 

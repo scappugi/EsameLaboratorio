@@ -5,9 +5,9 @@
 #include <iostream>
 #include "CollezioneNoteImportanti.h"
 
-void CollezioneNoteImportanti::AddNoteToList(Nota *nota) {
-    if (nota->getPriorita()==1 && nota->isInseritoInUnaListaHpriorita()==0) { //controllo che sia di priorità, e che non sia gia in un altra lista a priorità alt
-        nota->setInseritoInUnaListaHpriorita(1);
+void CollezioneNoteImportanti::AddNoteToList(Nota &nota) {
+    if (nota.getPriorita()==1 && nota.isInseritoInUnaListaHpriorita()==0) { //controllo che sia di priorità, e che non sia gia in un altra lista a priorità alt
+        nota.setInseritoInUnaListaHpriorita(1);
         listaToDo.push_back(nota); //inserisco in una lista
     }
     else cout << "la seguente nota è gia stata inserita in un altra lista, non puoi riserirla anche qua"; //stampare i dettagli della lista

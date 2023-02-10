@@ -3,7 +3,7 @@
 //
 
 #include "Nota.h"
-const string Nota::getNomeNota() const {
+string  Nota::getNomeNota() const {
     return nomeNota;
 }
 
@@ -11,7 +11,7 @@ void Nota::setNomeNota(const string &nomeNota) {
     Nota::nomeNota = nomeNota;
 }
 
-const string &Nota::getDescrizioneNota() const {
+string Nota::getDescrizioneNota() const {
     return descrizioneNota;
 }
 
@@ -49,4 +49,24 @@ bool Nota::isInseritoInUnaListaHpriorita() const {
 
 void Nota::setInseritoInUnaListaHpriorita(bool inseritoInUnaListaHpriorita) {
     Nota::inseritoInUnaListaHpriorita = inseritoInUnaListaHpriorita;
+}
+
+bool Nota::operator==(const Nota &nota) {
+    if (this->getNomeNota() == nota.getNomeNota()){
+        return true;
+    }
+    else return false;
+
+}
+
+Nota & Nota::operator=(const Nota &nota) {
+   if(this!=&nota){
+       nomeNota=nota.nomeNota;
+       descrizioneNota=nota.descrizioneNota;
+       blocco=nota.blocco;
+       priorita=nota.priorita;
+       inseritoInUnaLista=nota.inseritoInUnaLista;
+       inseritoInUnaListaHpriorita=nota.inseritoInUnaListaHpriorita;
+   }
+    return *this;
 }

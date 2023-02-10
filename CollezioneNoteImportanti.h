@@ -15,7 +15,7 @@ class CollezioneNoteImportanti: public CollezioneNote{
 public:
     CollezioneNoteImportanti(string nome) : CollezioneNote(nome) {
     }
-    virtual void AddNoteToList(Nota *nota) override;
+    virtual void AddNoteToList(Nota &nota) override;
 };
 
 
