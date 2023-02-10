@@ -83,6 +83,7 @@ TEST(TestPaginaHome, TestRemoveNoteFromCollection){ //aggiunto il caso in cui ut
     c.AddNoteToList(nota3);
     ASSERT_TRUE(ph.eliminaNota(test,nota2));
     ASSERT_TRUE(ph.eliminaNota(test,nota3));
+    ASSERT_FALSE(ph.eliminaNota(test,nota3)); //una volta eliminato non si deve poter rieliminare
     ASSERT_FALSE(ph.eliminaNota(test1, nota3));
 
 

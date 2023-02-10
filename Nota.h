@@ -44,7 +44,7 @@ public:
     void setInseritoInUnaListaHpriorita(bool inseritoInUnaListaHpriorita);
 
     ///sovraccaricamento operatore ==
-     bool operator==(const Nota &nota);
+    bool operator==(const Nota &nota);
     Nota &operator=(const Nota &nota);
 
 private:
