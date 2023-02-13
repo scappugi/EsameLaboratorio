@@ -24,15 +24,11 @@ TEST(TestCollezione, TestRemoveNote){
     string nomeTest="nomeTest";
     Nota notaTest(nomeTest);
     c.AddNoteToList(notaTest);
-
     //blocco nota per fare test
     c.bloccaNota(notaTest);
     ASSERT_EQ(false, c.removeToList(notaTest));
-
     c.sbloccaNota(notaTest);
-
     ASSERT_TRUE(c.removeToList(notaTest));
-
     EXPECT_FALSE(c.removeToList(notaTest)); //una volta fatto il remove non si dovrebbe più poter rimuovere
     cout<<"----------------------------------------------------"<<endl;
 }
@@ -48,13 +44,9 @@ TEST(TestCollezione, TestRenameNote){
     string OldNomeTest="OldNomeTest";
     Nota notaTest(OldNomeTest);
     c.AddNoteToList(notaTest);
-
     string NewNomeTest="NewNomeTest";
-
     ASSERT_TRUE(c.cercaNote(notaTest) );
-
     c.modificaNota(notaTest, NewNomeTest);
-
     Nota nota1(OldNomeTest);
     ASSERT_FALSE(c.cercaNote(nota1));
     Nota nota2(NewNomeTest);
@@ -78,7 +70,6 @@ TEST(TestCollezione, TestLockNote){
     bool preBlocco=c.getNota(nomeTest).getBlocco();
     c.bloccaNota(notaTest);
     bool afterBlocco=c.getNota(nomeTest).getBlocco();
-    cout<<preBlocco<<afterBlocco<<endl;
     ASSERT_NE(preBlocco,afterBlocco);
     cout<<"----------------------------------------------------"<<endl;
 }

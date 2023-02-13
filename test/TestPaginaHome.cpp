@@ -4,7 +4,6 @@
 #include <gtest/gtest.h>
 #include"../CollezioneNote.h"
 #include "../PaginaHome.h"
-
 using namespace std;
 
 TEST(TestPaginaHome, TestInsertCollection){
@@ -127,6 +126,5 @@ TEST(TestPaginaHome, TestMoveNote){
     ph.spostaNota(notaTest,test,test1);
     ASSERT_FALSE(ph.contieneNote(notaTest,test));
     ASSERT_TRUE(ph.contieneNote(notaTest,test1));
-
     cout<<"----------------------------------------------------"<<endl;
 }

@@ -10,8 +10,7 @@ void CollezioneNote::AddNoteToList(Nota  &nota) {
         listaToDo.push_back(nota); //inserisco in una lista
         notify();
     } else
-        cout
-                << "la seguente nota è gia stata inserita in un altra lista, non puoi riserirla anche qua"; //stampare i dettagli della lista
+        cout<< "la seguente nota è gia stata inserita in un altra lista, non puoi riserirla anche qua"; //stampare i dettagli della lista
 }
 
 bool CollezioneNote::removeToList(Nota &nota) {
@@ -107,7 +106,7 @@ bool CollezioneNote::sbloccaNota(Nota &nota) {
     return false;
 }
 
-void CollezioneNote::modificaNota(const Nota &nota, const string &newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
+void CollezioneNote::modificaNota(Nota &nota, const string &newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
     for (auto itr: listaToDo) {
         if (itr == nota) { //la nota è in quella lista
             if (nota.getBlocco() == 0) {

@@ -71,8 +71,7 @@ void PaginaHome::update(const string &name,int size) { //stampa a schermata il n
 void PaginaHome::setBassaPriorita(Nota &nota, const string &nomeCollezione) {
     auto it = collezioneNoteImportanti.find(nomeCollezione);
     if (it != collezioneNoteImportanti.end()) {
-        it->second->diminuisciPrioritaNota(
-                nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
+        it->second->diminuisciPrioritaNota(nota);//in questo metodo si diminuisce automaticamente la priorità di una nota
     }
     auto itr = collezioneNote.find(nomeCollezione);
     if (itr != collezioneNote.end()) {

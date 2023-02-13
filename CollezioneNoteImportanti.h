@@ -4,8 +4,6 @@
 
 #ifndef ESAMELABORATORIO_COLLEZIONENOTEIMPORTANTI_H
 #define ESAMELABORATORIO_COLLEZIONENOTEIMPORTANTI_H
-
-
 #include "Nota.h"
 #include "list"
 #include "Subject.h"

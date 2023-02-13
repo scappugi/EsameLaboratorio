@@ -7,13 +7,9 @@
 int main() {
 
 Nota nota1 ("Lavori", "lavori da fare durante la settimana");
-
 Nota nota2 ("Esami","schedulazione esami da fare durante l' anno");
-
 Nota nota3 ("Analisi I","Esame di analisi I" );
-
 Nota nota4 ("Analisi II", "Esame di analisi II" );
-
 Nota nota5 ("Fisica II");
 
 PaginaHome paginaHome;

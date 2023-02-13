@@ -4,12 +4,9 @@
 
 #ifndef ESAMELABORATORIO_SUBJECT_H
 #define ESAMELABORATORIO_SUBJECT_H
-
-
 #include "Observer.h"
 
 class Subject {
-
 protected:
     Observer *o= nullptr;
 public:

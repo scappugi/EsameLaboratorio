@@ -4,15 +4,14 @@
 
 #ifndef ESAMELABORATORIO_PAGINAHOME_H
 #define ESAMELABORATORIO_PAGINAHOME_H
-
 #include <map>
 #include "list"
 #include "Observer.h"
 #include "CollezioneNote.h"
 #include "Subject.h"
 #include "CollezioneNoteImportanti.h"
-
 using namespace std;
+
 class PaginaHome: public  Observer  {
 public:
 
@@ -40,15 +39,12 @@ public:
     bool eliminaNota(const string& nomeCollezione, Nota &nota ); //gestisce il caso di errore con una eccezione (caso in cui la nota/colezione siano bloccate)
     bool eliminaCollezione(const string& nomeCollezione);
 
-
     ///metodi per cercare e spostare
     bool contieneCollezioni(const string& nomeCollezione);
     bool contieneNote(const Nota &nota,const string& nomeCollezione);
     void spostaNota(Nota &nota, const string& collezioneIniziale, const string& collezionefinale);
 
-
     ////metodi inerenti al pattern Observer
-
     virtual void update(const string &name ,int size) override; //inserisco dimensione attuale della lista come parametro di update
     virtual ~PaginaHome()=default;
     
