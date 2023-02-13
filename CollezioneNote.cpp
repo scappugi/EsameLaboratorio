@@ -4,7 +4,7 @@
 
 #include "CollezioneNote.h"
 
-void CollezioneNote::AddNoteToList(Nota &nota) {
+void CollezioneNote::AddNoteToList(Nota  &nota) {
     if (nota.isInseritoInUnaLista() == false) { //controllo che non sia già stato inserito in un altra lista
         nota.setInseritoInUnaLista(true);
         listaToDo.push_back(nota); //inserisco in una lista
@@ -107,8 +107,7 @@ bool CollezioneNote::sbloccaNota(Nota &nota) {
     return false;
 }
 
-void CollezioneNote::modificaNota(Nota &nota,
-                                  const string &newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
+void CollezioneNote::modificaNota(const Nota &nota, const string &newTitle) { //questo metodo prende due stringhe, usa la stringa old per fare la ricerca della nota, ciò comporta pero a dover avere UNIVOCI i nomi delle note(non ho impostato questo controllo)
     for (auto itr: listaToDo) {
         if (itr == nota) { //la nota è in quella lista
             if (nota.getBlocco() == 0) {
@@ -140,7 +139,7 @@ Nota CollezioneNote::getNota(const string &nomeNota) {
     return Nota("");
 }
 
-void CollezioneNote::aumentaPrioritaNota(Nota &nota) {
+void CollezioneNote::aumentaPrioritaNota(const Nota &nota) {
     for (auto it: listaToDo) {
         if (&it == &nota) {
             it.setPriorita(true);//imposta la priorità ad alta
@@ -148,7 +147,7 @@ void CollezioneNote::aumentaPrioritaNota(Nota &nota) {
     }
 }
 
-void CollezioneNote::diminuisciPrioritaNota(Nota &nota) {
+void CollezioneNote::diminuisciPrioritaNota(const Nota &nota) {
     for (auto it: listaToDo) {
         if (it == nota) {
             it.setPriorita(false);//imposta la priorità ad alta

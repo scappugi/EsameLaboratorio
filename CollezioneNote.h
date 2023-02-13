@@ -34,14 +34,14 @@ public:
     bool bloccaNota(Nota &nota); //ritorna 1 se bloccata con successo altrimenti 0
     bool sbloccaNota(Nota &nota); //permette di togliere il blocco messo da bloccaNota
     void bloccaTutteLeNote();//pone tutte le note su bloccato
-    void aumentaPrioritaNota(Nota &nota);
-    void diminuisciPrioritaNota(Nota &nota);
+    void aumentaPrioritaNota(const Nota &nota);
+    void diminuisciPrioritaNota(const Nota &nota);
     string getNomeLista();
     Nota getNota(const string &nomeNota); //restituisce la prima nota con quel nome
 
 
     ///metodi per modificare e ricercare
-    void modificaNota(Nota &nota, const string &newTitle); //vuole andare a cambiare il titolo della nota
+    void modificaNota(const Nota &nota, const string &newTitle); //vuole andare a cambiare il titolo della nota
     void stampaNote();
     bool cercaNote(const Nota &nota);
 
